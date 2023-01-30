@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Set font to a fixed-width font */
+    body {
+      font-family: "Courier New", Courier, monospace;
+    }
+    /* Add some padding and background color for terminal-style look */
+    #n11 {
+      padding: 1px;
+      background-color: #000;
+      color: #BB7;
+      font-weight: bold;
+    }
+    #n110 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+    #n1100 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+    #n11000 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+    #sign {
+      padding: 1px;
+      background-color: #000;
+      color: #CB1;
+      font-weight: bold;
+    }
+    #equal {
+      padding: 1px;
+      background-color: #000;
+      color: #CB1;
+      font-weight: bold;
+    }
+    #result {
+      padding: 1px;
+      background-color: #000;
+      color: #CB1;
+      font-weight: bold;
+    }
+    #n21 {
+      padding: 1px;
+      background-color: #000;
+      color: #888;
+      font-weight: bold;
+    }
+    #n210 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+    #n2100 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+    #n21000 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+    }
+
+    #n31 {
+      padding: 1px;
+      background-color: #000;
+      color: #CB1;
+      font-weight: bold;
+    }
+    #n310 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+      font-weight: bold;
+    }
+    #n3100 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+      font-weight: bold;
+    }
+    #n31000 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+      font-weight: bold;
+    }
+    #n310000 {
+      padding: 1px;
+      background-color: #000;
+      color: #555;
+      font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h2>Middi On Math  -  Plus & Minus</h2>
+- F1 um den ersten Wert zu editieren, F2 f&#252;r den zweiten.<br>
+- Pfeil rechts/links um Einer-, Zehner-, Hunderterstelle auszuw&#228;hlen.<br>
+- Pfeil auf/ab um gew&#228;hlte Stelle hoch/runter zu z&#228;hlen.<br>
+- +/- w&#228;hlt die Rechenart aus. Leertaste l&#246;scht die Rechenart und das Ergebnis.<br>
+- R&#252;cktaste l&#246;scht den aktuellen Wert.<br><br>
+
+
+  <table id = "TermTable" style="font-family: 'Courier New', courier, monospace; ; padding: 20px; background-color: black; font-size:x-large; color:rgb(40, 65, 65);">
+    <tbody>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">E</td>
+        <td style="width: 1ch; float:left; height: 1ch;">i</td>
+        <td style="width: 1ch; float:left; height: 1ch;">n</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">r</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">Z</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">h</td>
+        <td style="width: 1ch; float:left; height: 1ch;">n</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">r</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;">H</td>
+        <td style="width: 1ch; float:left; height: 1ch;">u</td>
+        <td style="width: 1ch; float:left; height: 1ch;">n</td>
+        <td style="width: 1ch; float:left; height: 1ch;">d</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">r</td>
+        <td style="width: 1ch; float:left; height: 1ch;">t</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">r</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;">T</td>
+        <td style="width: 1ch; float:left; height: 1ch;">a</td>
+        <td style="width: 1ch; float:left; height: 1ch;">u</td>
+        <td style="width: 1ch; float:left; height: 1ch;">s</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">n</td>
+        <td style="width: 1ch; float:left; height: 1ch;">d</td>
+        <td style="width: 1ch; float:left; height: 1ch;">e</td>
+        <td style="width: 1ch; float:left; height: 1ch;">r</td>
+        <td style="width: 1ch; float:left; height: 1ch;">.</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">1</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n11000">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n1100">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n110">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n11">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="sign">?</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n21000">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n2100">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n210">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n21">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="equal"> = </span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n310000">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n31000">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n3100">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n310">0</span></td>
+        <td style="width: 1ch; float:left; height: 1ch;"><span id="n31">0</span></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">|</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+      <tr>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;">0</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;">-</td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+        <td style="width: 1ch; float:left; height: 1ch;"></td>
+      </tr>
+    </tbody>
+  </table>
+  
+<br>
+
+<!-- <span id="result" style = "float:left">0</span> -->
+
+
+<script>
+
+  var termTable = document.getElementById("TermTable");
+
+  /* 0 = "?"" / 1 = "+"" / 2 = "-" */
+  var selectedCalc = 0;
+  
+  var selectedNumber = 0;
+  
+  /*ones, tens, hundreds*/
+  let selectedSize = [1,1];
+  
+  /*ones, tens, hundreds, thousands*/
+  let n1 = [0,0,0];
+  let n10 = [0,0,0];
+  let n100 = [0,0,0];
+  let n1000 = [0,0,0];
+  var n10000 = 0;
+
+  /*if a number is on limit*/
+  var limit = 0;
+
+  // Result
+  let result = [0,0,0];
+
+  // Bold the start state
+  for (var i = 4; i < 23; i++) {
+    termTable.rows[0].cells[i].style.fontWeight = "bold"
+  }
+  for (var i = 1; i < 5; i++) {
+    termTable.rows[i].cells[22].style.fontWeight = "bold"
+    termTable.rows[i + 5].cells[22].style.fontWeight = "bold"
+  }
+  for (var i = 14; i < 23; i++) {
+    termTable.rows[10].cells[i].style.fontWeight = "bold"
+  }
+  for (var i = 30; i < 39; i++) {
+      termTable.rows[0].cells[i].style.fontWeight = "bold"
+      termTable.rows[10].cells[i].style.fontWeight = "bold"
+  }
+  for (var i = 1; i < 5; i++) {
+      termTable.rows[i].cells[38].style.fontWeight = "bold"
+      termTable.rows[i + 5].cells[38].style.fontWeight = "bold"
+  }
+
+  // Listen for keydown events
+  document.addEventListener("keydown", function(event) {
+    // Check if arrow-up key was pressed
+    if (event.code === "ArrowUp" || event.code === "Numpad8") {
+      // Increase number by size
+      if (selectedSize[selectedNumber] === 1) {
+        if (!(result[selectedNumber] + 1 > 9999)) {
+            n1[selectedNumber]++;            
+        }
+      }
+      else if (selectedSize[selectedNumber] === 10) {
+        if (!(result[selectedNumber] + 10 > 9999)) {
+            n10[selectedNumber]++;            
+        }
+      }
+      else if (selectedSize[selectedNumber] === 100) {
+        if (!(result[selectedNumber] + 100 > 9999)) {
+            n100[selectedNumber]++;            
+        }
+      }
+      if (n1[selectedNumber] > 9) {
+        n1[selectedNumber] = 0;
+        n10[selectedNumber]++;
+      }
+      if (n10[selectedNumber] > 9) {
+        n10[selectedNumber] = 0;
+        n100[selectedNumber]++;
+      }
+      if (n100[selectedNumber] > 9) {
+        n100[selectedNumber] = 0;
+        n1000[selectedNumber]++;
+      }
+      if (n1000[selectedNumber] > 9) {
+        // Not greater 9999
+        n1000[selectedNumber] = 9;
+        n100[selectedNumber] = 9;
+        n10[selectedNumber] = 9;
+        n1[selectedNumber] = 9;
+        limit = 1;
+      }
+      else {
+        limit = 0;
+      }
+    } 
+    // Check if arrow-down key was pressed
+    else if (event.code === "ArrowDown" || event.code === "Numpad2") {
+      // Decrease number by size
+      if (selectedSize[selectedNumber] === 1) {
+        n1[selectedNumber]--;
+      }
+      else if (selectedSize[selectedNumber] === 10) {
+        n10[selectedNumber]--;
+      }
+      else if (selectedSize[selectedNumber] === 100) {
+        n100[selectedNumber]--;
+      }
+      if (n1[selectedNumber] < 0) {
+        n1[selectedNumber] = 9;
+        n10[selectedNumber]--;
+      }
+      if (n10[selectedNumber] < 0) {
+        n10[selectedNumber] = 9;
+        n100[selectedNumber]--;
+      }
+      if (n100[selectedNumber] < 0) {
+        n100[selectedNumber] = 9;
+        n1000[selectedNumber]--;
+      }
+      if (n1000[selectedNumber] < 0) {
+        // No  negatives allowed....
+        n1000[selectedNumber] = 0;
+        n100[selectedNumber] = 0;
+        n10[selectedNumber] = 0;
+        n1[selectedNumber] = 0;
+        limit = 1;
+      }
+      else {
+        limit = 0;
+      }
+    }
+    // Check if arrow-right key was pressed
+    else if (event.code === "ArrowRight" || event.code === "Numpad6") {
+      // MDivide by 10
+      if (selectedSize[selectedNumber] > 1) {
+        selectedSize[selectedNumber] /= 10;        
+      }
+    }
+    // Check if arrow-left key was pressed
+    else if (event.code === "ArrowLeft" || event.code === "Numpad4") {
+      // Multiply by 10
+      if (selectedSize[selectedNumber] < 100) {
+        selectedSize[selectedNumber] *= 10;        
+      }
+    }
+    // Check if enter key was pressed
+    else if (event.code === "Enter" || event.code === "NumpadEnter") {
+    }
+    // Check if Backspace key was pressed
+    else if (event.code === "Backspace") {
+      // Reset number to 0 and size to 1
+      n1[selectedNumber] = 0;
+      n10[selectedNumber] = 0;
+      n100[selectedNumber] = 0;
+      n1000[selectedNumber] = 0;
+      selectedSize[selectedNumber] = 1;
+    }
+    // Check if "+" key was pressed (!! GERMAN !!)
+    else if (event.code === "BracketRight" || event.code === "NumpadAdd") {
+      // Add
+      selectedCalc = 1;
+      document.getElementById("sign").innerHTML = ' + ';
+    }
+    // Check if "-" key was pressed (!! GERMAN !!)
+    else if (event.code === "Slash" || event.code === "NumpadSubtract") {
+      // Subtract
+      selectedCalc = 2;
+      document.getElementById("sign").innerHTML = ' - ';
+    }
+    else if (event.code === "Space") {
+      // Disable Calculation
+      selectedCalc = 0;
+      document.getElementById("sign").innerHTML = ' ? ';
+    }
+    // Check if "1" key was pressed
+    else if (event.code === "F1") {
+      selectedNumber = 0;
+    }
+    // Check if "2" key was pressed
+    else if (event.code === "F2") {
+      selectedNumber = 1;
+    }
+
+    result[0] = n1[0] + n10[0] * 10 + n100[0] * 100 + n1000[0] * 1000;
+    result[1] = n1[1] + n10[1] * 10 + n100[1] * 100 + n1000[1] * 1000;
+    n1[2] = 0; n10[2] = 0; n100[2] = 0; n1000[2] = 0; n10000 = 0; 
+    if (selectedCalc === 1) {
+        result[2] = result[0] + result[1];
+    }
+    else if (selectedCalc === 2) {
+        result[2] = result[0] - result[1];
+    }
+    else {
+        // still the "?" is active...
+        result[2] = 0;
+    }
+    var strResult = result[2].toString();
+    var hlp = 0;
+    for (var i = strResult.length - 1; i >= 0; i--) {
+        hlp++;
+        switch (hlp) {
+            case 1:
+                n1[2] = parseInt(strResult[i]);
+                break;
+            case 2:
+                n10[2] = parseInt(strResult[i]);
+                if (strResult[i] === "-") {
+                    n10000 = -1;
+                    n10[2] = 0;
+                }
+                break;
+            case 3:
+                n100[2] = parseInt(strResult[i]);
+                if (strResult[i] === "-") {
+                    n10000 = -1;
+                    n100[2] = 0;
+                }
+                break;
+            case 4:
+                n1000[2] = parseInt(strResult[i]);
+                if (strResult[i] === "-") {
+                    n10000 = -1;
+                    n1000[2] = 0;
+                }
+                break;
+            case 5:
+                n10000 = parseInt(strResult[i]);
+                if (strResult[i] === "-") {
+                    n10000 = -1;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
+    // Update the numbers on the page
+
+    document.getElementById("n11").innerHTML = n1[0];
+    document.getElementById("n110").innerHTML = n10[0];
+    document.getElementById("n1100").innerHTML = n100[0];
+    document.getElementById("n11000").innerHTML = n1000[0];
+    document.getElementById("n21").innerHTML = n1[1];
+    document.getElementById("n210").innerHTML = n10[1];
+    document.getElementById("n2100").innerHTML = n100[1];
+    document.getElementById("n21000").innerHTML = n1000[1];
+    document.getElementById("n31").innerHTML = n1[2];
+    document.getElementById("n310").innerHTML = n10[2];
+    document.getElementById("n3100").innerHTML = n100[2];
+    document.getElementById("n31000").innerHTML = n1000[2];
+
+    if (n10000 < 0) {
+        document.getElementById("n310000").innerHTML = "-";        
+    }
+    else {
+        document.getElementById("n310000").innerHTML = n10000;        
+    }
+
+    //document.getElementById("result").innerHTML = event.code; //result[2];
+
+    // Make the colors depending on leading zeros and selected number
+    if (selectedNumber === 0) {
+        if (n1000[0] === 0) {
+            document.getElementById("n11000").style.color = "#555";
+            if (n100[0] === 0) {
+                document.getElementById("n1100").style.color = "#555";
+                if (n10[0] === 0) {
+                    document.getElementById("n110").style.color = "#555";
+                }
+                else {
+                    document.getElementById("n110").style.color = "#BB7";
+                }
+            }
+            else {
+                document.getElementById("n1100").style.color = "#BB7";
+                document.getElementById("n110").style.color = "#BB7";
+            }
+        }
+        else {
+            document.getElementById("n11000").style.color = "#BB7";
+            document.getElementById("n1100").style.color = "#BB7";
+            document.getElementById("n110").style.color = "#BB7";
+        }
+        document.getElementById("n11").style.color = "#BB7";
+        document.getElementById("n21").style.color = "#888";
+
+        if (n10[1] > 0 || n100[1] > 0 || n1000[1] > 0) {
+            document.getElementById("n210").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n210").style.color = "#555";
+        }
+        if (n100[1] > 0 || n1000[1] > 0) {
+            document.getElementById("n2100").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n2100").style.color = "#555";
+        }
+        if (n1000[1] > 0) {
+            document.getElementById("n21000").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n21000").style.color = "#555";
+        }
+    }
+    else if (selectedNumber === 1) {
+        if (n1000[1] === 0) {
+            document.getElementById("n21000").style.color = "#555";
+            if (n100[1] === 0) {
+                document.getElementById("n2100").style.color = "#555";
+                if (n10[1] === 0) {
+                    document.getElementById("n210").style.color = "#555";
+                }
+                else {
+                    document.getElementById("n210").style.color = "#BB7";
+                }
+            }
+            else {
+                document.getElementById("n2100").style.color = "#BB7";
+                document.getElementById("n210").style.color = "#BB7";
+            }
+        }
+        else {
+            document.getElementById("n21000").style.color = "#BB7";
+            document.getElementById("n2100").style.color = "#BB7";
+            document.getElementById("n210").style.color = "#BB7";
+        }
+        document.getElementById("n21").style.color = "#BB7";
+        document.getElementById("n11").style.color = "#888";
+
+        if (n10[0] > 0 || n100[0] > 0 || n1000[0] > 0) {
+            document.getElementById("n110").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n110").style.color = "#555";
+        }
+        if (n100[0] > 0 || n1000[0] > 0) {
+            document.getElementById("n1100").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n1100").style.color = "#555";
+        }
+        if (n1000[0] > 0) {
+            document.getElementById("n11000").style.color = "#888";            
+        }
+        else {
+            document.getElementById("n11000").style.color = "#555";
+        }
+    }
+
+    if (n10000 === 0) {
+        document.getElementById("n310000").style.color = "#555";
+    }
+    else if (n10000 < 0) {
+        document.getElementById("n310000").style.color = "#CB1";        
+    }
+    else if (n10000 === 1) {
+        document.getElementById("n310000").style.color = "#CB1";        
+        document.getElementById("n31000").style.color = "#CB1";
+        document.getElementById("n3100").style.color = "#CB1";
+        document.getElementById("n310").style.color = "#CB1";
+    }        
+    if (n1000[2] === 0 && n10000 != 1) {
+        document.getElementById("n31000").style.color = "#555";
+        if (n100[2] === 0) {
+            document.getElementById("n3100").style.color = "#555";
+            if (n10[2] === 0) {
+                document.getElementById("n310").style.color = "#555";
+            }
+            else {
+                document.getElementById("n310").style.color = "#CB1";
+            }
+        }
+        else {
+            document.getElementById("n3100").style.color = "#CB1";
+            document.getElementById("n310").style.color = "#CB1";
+        }
+    }
+    else {
+        document.getElementById("n31000").style.color = "#CB1";
+        document.getElementById("n3100").style.color = "#CB1";
+        document.getElementById("n310").style.color = "#CB1";
+    }
+
+
+    // Bold / unset to the right positions
+    if (selectedNumber === 0) {
+        switch (selectedSize[selectedNumber]) {
+            case 1:
+                document.getElementById("n11").style.fontWeight = "bold";
+                document.getElementById("n110").style.fontWeight = "unset";
+                document.getElementById("n1100").style.fontWeight = "unset";
+                for (var i = 4; i < 23; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 3; i < 21; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 0; i < 19; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "unset"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[22].style.fontWeight = "bold"
+                    termTable.rows[i + 5].cells[22].style.fontWeight = "bold"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[20].style.fontWeight = "unset"
+                    termTable.rows[i + 4].cells[20].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[18].style.fontWeight = "unset"
+                    termTable.rows[i + 3].cells[18].style.fontWeight = "unset"
+                }
+
+                for (var i = 14; i < 23; i++) {
+                    termTable.rows[10].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 13; i < 21; i++) {
+                    termTable.rows[9].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 12; i < 19; i++) {
+                    termTable.rows[8].cells[i].style.fontWeight = "unset"
+                }
+
+                break;
+            case 10:
+                document.getElementById("n11").style.fontWeight = "unset";
+                document.getElementById("n110").style.fontWeight = "bold";
+                document.getElementById("n1100").style.fontWeight = "unset";
+                for (var i = 4; i < 23; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 21; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 0; i < 19; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "unset"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[22].style.fontWeight = "unset"
+                    termTable.rows[i + 5].cells[22].style.fontWeight = "unset"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[20].style.fontWeight = "bold"
+                    termTable.rows[i + 4].cells[20].style.fontWeight = "bold"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[18].style.fontWeight = "unset"
+                    termTable.rows[i + 3].cells[18].style.fontWeight = "unset"
+                }
+
+                for (var i = 14; i < 23; i++) {
+                    termTable.rows[10].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 13; i < 21; i++) {
+                    termTable.rows[9].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 12; i < 19; i++) {
+                    termTable.rows[8].cells[i].style.fontWeight = "unset"
+                }
+
+                break;
+            case 100:
+                document.getElementById("n11").style.fontWeight = "unset";
+                document.getElementById("n110").style.fontWeight = "unset";
+                document.getElementById("n1100").style.fontWeight = "bold";
+                for (var i = 4; i < 23; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 21; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 0; i < 19; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "bold"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[22].style.fontWeight = "unset"
+                    termTable.rows[i + 5].cells[22].style.fontWeight = "unset"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[20].style.fontWeight = "unset"
+                    termTable.rows[i + 4].cells[20].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[18].style.fontWeight = "bold"
+                    termTable.rows[i + 3].cells[18].style.fontWeight = "bold"
+                }
+
+                for (var i = 14; i < 23; i++) {
+                    termTable.rows[10].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 13; i < 21; i++) {
+                    termTable.rows[9].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 12; i < 19; i++) {
+                    termTable.rows[8].cells[i].style.fontWeight = "bold"
+                }
+
+                break;
+        }
+    }
+    else {
+        switch (selectedSize[selectedNumber]) {
+            case 1:
+                document.getElementById("n21").style.fontWeight = "bold";
+                document.getElementById("n210").style.fontWeight = "unset";
+                document.getElementById("n2100").style.fontWeight = "unset";
+
+                for (var i = 30; i < 39; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "bold"
+                    termTable.rows[10].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 29; i < 37; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "unset"
+                    termTable.rows[9].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 28; i < 35; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "unset"
+                    termTable.rows[8].cells[i].style.fontWeight = "unset"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[38].style.fontWeight = "bold"
+                    termTable.rows[i + 5].cells[38].style.fontWeight = "bold"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[36].style.fontWeight = "unset"
+                    termTable.rows[i + 4].cells[36].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[34].style.fontWeight = "unset"
+                    termTable.rows[i + 3].cells[34].style.fontWeight = "unset"
+                }
+                break;
+            case 10:
+                document.getElementById("n21").style.fontWeight = "unset";
+                document.getElementById("n210").style.fontWeight = "bold";
+                document.getElementById("n2100").style.fontWeight = "unset";
+
+                for (var i = 30; i < 39; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "unset"
+                    termTable.rows[10].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 29; i < 37; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "bold"
+                    termTable.rows[9].cells[i].style.fontWeight = "bold"
+                }
+                for (var i = 28; i < 35; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "unset"
+                    termTable.rows[8].cells[i].style.fontWeight = "unset"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[38].style.fontWeight = "unset"
+                    termTable.rows[i + 5].cells[38].style.fontWeight = "unset"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[36].style.fontWeight = "bold"
+                    termTable.rows[i + 4].cells[36].style.fontWeight = "bold"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[34].style.fontWeight = "unset"
+                    termTable.rows[i + 3].cells[34].style.fontWeight = "unset"
+                }
+                break;
+            case 100:
+                document.getElementById("n21").style.fontWeight = "unset";
+                document.getElementById("n210").style.fontWeight = "unset";
+                document.getElementById("n2100").style.fontWeight = "bold";
+
+                for (var i = 30; i < 39; i++) {
+                    termTable.rows[0].cells[i].style.fontWeight = "unset"
+                    termTable.rows[10].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 29; i < 37; i++) {
+                    termTable.rows[1].cells[i].style.fontWeight = "unset"
+                    termTable.rows[9].cells[i].style.fontWeight = "unset"
+                }
+                for (var i = 28; i < 35; i++) {
+                    termTable.rows[2].cells[i].style.fontWeight = "bold"
+                    termTable.rows[8].cells[i].style.fontWeight = "bold"
+                }
+
+                for (var i = 1; i < 5; i++) {
+                    termTable.rows[i].cells[38].style.fontWeight = "unset"
+                    termTable.rows[i + 5].cells[38].style.fontWeight = "unset"
+                }
+                for (var i = 2; i < 5; i++) {
+                    termTable.rows[i].cells[36].style.fontWeight = "unset"
+                    termTable.rows[i + 4].cells[36].style.fontWeight = "unset"
+                }
+                for (var i = 3; i < 5; i++) {
+                    termTable.rows[i].cells[34].style.fontWeight = "bold"
+                    termTable.rows[i + 3].cells[34].style.fontWeight = "bold"
+                }
+                break;
+        }
+    }
+    
+    // Bottom Lines Values
+    termTable.rows[7].cells[11].innerHTML = n1000[0]
+    termTable.rows[8].cells[12].innerHTML = n100[0]
+    termTable.rows[9].cells[13].innerHTML = n10[0]
+    termTable.rows[10].cells[14].innerHTML = n1[0]
+    termTable.rows[7].cells[27].innerHTML = n1000[1]
+    termTable.rows[8].cells[28].innerHTML = n100[1]
+    termTable.rows[9].cells[29].innerHTML = n10[1]
+    termTable.rows[10].cells[30].innerHTML = n1[1]
+
+  });
+</script>
+
+</body>
+</html>

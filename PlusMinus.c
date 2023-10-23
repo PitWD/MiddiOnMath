@@ -26,6 +26,21 @@ int HELP_SIGN = 1;          // If sign of help-line is printed
 
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
+void PrintHelp(char *strIN){
+    printf("How to call:\n");
+    printf("  %s <option-1> <option-2> <option-n>\n", strIN);
+    printf("Known options:\n");
+    printf("  -x=n            n = 1-%d columns\n", MAX_X_COPY);
+    printf("  -y=n            n = 1-%d rows\n", MAX_Y_COPY);
+    printf("  -calc='n'       n = +- or + or - calculation(s)\n");
+    printf("  -remove=n       n = 0=none or 1=result or 2=random\n");
+    printf("  -convline=n     n = 1=true or 0=false, if converter-line is printed\n");
+    printf("  -convsign=n     n = 1=true or 0=false, if converter-sign is printed\n");
+    printf("  -helpline=n     n = 1=true or 0=false, if help-line is printed\n");
+    printf("  -helpsign=n     n = 1=true or 0=false, if help-signs are printed\n");
+    printf("  -help           print this screen\n\n");
+}
+
 void CursorSave(){
   printf("\0337");
   //printf("\x1B[s");
@@ -387,23 +402,13 @@ int main(int argc, char *argv[]){
         }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");
-            printf("How to call:\n");
-            printf("  %s <option-1> <option-2> <option-n>\n", argv[0]);
-            printf("Known options:\n");
-            printf("  -x=n            n = 1-%d columns\n", MAX_X_COPY);
-            printf("  -y=n            n = 1-%d rows\n", MAX_Y_COPY);
-            printf("  -calc='n'       n = +- or + or - calculation(s)\n");
-            printf("  -remove=n       n = 0=none or 1=result or 2=random\n");
-            printf("  -convline=n     n = 1=true or 0=false, if converter-line is printed\n");
-            printf("  -convsign=n     n = 1=true or 0=false, if converter-sign is printed\n");
-            printf("  -helpline=n     n = 1=true or 0=false, if help-line is printed\n");
-            printf("  -helpsign=n     n = 1=true or 0=false, if help-signs are printed\n");
-            printf("  -help           print this screen\n\n");
+            PrintHelp(argv[0]);
             return 0;
         }
         else{
             printf("\n\nIllegal option:\n");
-            printf("         %s\n\n",argv[i]);
+            printf("  %s\n",argv[i]);
+            PrintHelp(argv[0]);
             return -1;
         }
     }

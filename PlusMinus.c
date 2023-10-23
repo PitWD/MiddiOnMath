@@ -61,8 +61,11 @@ void DECboxMode(int set){
 
 int GetRand(int start, int stop){
     // Randomize number start - stop
-    srand(clock());    
-    return start + rand() % (stop - start);
+    #if __APPLE__
+        return start + arc4random() % (stop - start);
+    #else
+        return start + rand() % (stop - start);
+    #endif
 }
 void GetRandPair(int *num1st, int *num2nd){
     *num1st = GetRand(11, 99);
@@ -73,7 +76,12 @@ int GetNegPair(int *num1st, int *num2nd){
     while (!r){
         GetRandPair(num1st, num2nd);
         r = *num1st - *num2nd;
-        if(r < 0) r = 0;
+        if(r < 0){
+            r = *num1st;
+            *num1st = *num2nd;
+            *num2nd = r;
+            r = *num1st - *num2nd;
+        }
     }
     return r;
 }
@@ -106,7 +114,7 @@ void PrintMidLine(char symbol){
 void PrintTriple(char *strIN){
     for (size_t i = 0; i < 4; i++){
         for (size_t j = 0; j < 3; j++){
-            printf(strIN);
+            printf("%s",strIN);
             if(i < 3 || j < 3) printf(" ");
         }
         if(i < 3) printf(" ");
@@ -173,28 +181,40 @@ void FillBoxLine(char symbol){
         sprintf(char2nd,"%d", num2nd);
         sprintf(char3rd,"%d", r);
         
-        if (num1st > 9){
+        //if (num1st > 9){
             printf("%c", char1st[0]);
             CursorRight(1);
             printf("%c", char1st[1]);
-        }
-        else{
-            CursorRight(2);
-            printf("%c", char1st[0]);
-        }
+        //}
+        //else{
+        //    CursorRight(2);
+        //    printf("%c", char1st[0]);
+        //}
         CursorRight(3);
         
-        if (num2nd > 9){
+        //if (num2nd > 9){
             printf("%c", char2nd[0]);
             CursorRight(1);
             printf("%c", char2nd[1]);
+        //}
+        //else{
+            //CursorRight(2);
+            //printf("%c", char2nd[0]);
+        //}
+
+        CursorRight(3);
+        if (r > 9){
+            printf("%c", char3rd[0]);
+            CursorRight(1);
+            printf("%c", char3rd[1]);
         }
         else{
             CursorRight(2);
-            printf("%c", char2nd[0]);
+            printf("%c", char3rd[0]);
         }
-        
-        if (i < 3) CursorRight(10);
+
+
+        if (i < 3) CursorRight(4);
     }
     
     CursorRestore();
@@ -207,6 +227,8 @@ void FillBoxLine(char symbol){
 int main(){
     CLS();
     CursorDown(1); CursorRight(2);
+
+    srand(clock());    
 
     PrintCalcLine('+');
     FillBoxLine('+');

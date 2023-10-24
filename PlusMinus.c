@@ -13,6 +13,7 @@ int Y_Copy = 2;             // Count Vertical Calculations
 int CALC_MODE = 2;          // 0 = Multiplications
                             // 1 = Subtractions
                             // 2 = Mul. & Sub. mixed
+char *strCalcMode[] = {"+", "-", "+-"};
 
 int MISSING = 2;            // 0 = Show All
                             // 1 = remove result
@@ -29,15 +30,15 @@ char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 void PrintHelp(char *strIN){
     printf("How to call:\n");
     printf("  %s <option-1> <option-2> <option-n>\n", strIN);
-    printf("Known options:\n");
-    printf("  -x=n            n = 1-%d columns\n", MAX_X_COPY);
-    printf("  -y=n            n = 1-%d rows\n", MAX_Y_COPY);
-    printf("  -calc='n'       n = +- or + or - calculation(s)\n");
-    printf("  -remove=n       n = 0=none or 1=result or 2=random\n");
-    printf("  -convline=n     n = 1=true or 0=false, if converter-line is printed\n");
-    printf("  -convsign=n     n = 1=true or 0=false, if converter-sign is printed\n");
-    printf("  -helpline=n     n = 1=true or 0=false, if help-line is printed\n");
-    printf("  -helpsign=n     n = 1=true or 0=false, if help-signs are printed\n");
+    printf("Known options (defaults in []):\n");
+    printf("  -x=n            n [%d]  = 1-%d columns\n", X_Copy, MAX_X_COPY);
+    printf("  -y=n            n [%d]  = 1-%d rows\n",Y_Copy, MAX_Y_COPY);
+    printf("  -calc='n'       n [%s] = +- or + or - calculation(s)\n", strCalcMode[CALC_MODE]);
+    printf("  -remove=n       n [%d]  = 0=none or 1=result or 2=random\n", MISSING);
+    printf("  -convline=n     n [%d]  = 1=true or 0=false, if converter-line is printed\n", CONV_LINE);
+    printf("  -convsign=n     n [%d]  = 1=true or 0=false, if converter-sign is printed\n", CONV_SIGN);
+    printf("  -helpline=n     n [%d]  = 1=true or 0=false, if help-line is printed\n", HELP_LINE);
+    printf("  -helpsign=n     n [%d]  = 1=true or 0=false, if help-signs are printed\n", HELP_SIGN);
     printf("  -help           print this screen\n\n");
 }
 

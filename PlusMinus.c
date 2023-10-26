@@ -25,7 +25,9 @@ int CONV_SIGN = 1;          // IF sign of converting line is printed
 int HELP_LINE = 1;          // If regular help-line is printed
 int HELP_SIGN = 1;          // If sign of help-line is printed
 
-int LINE_COLOR = 0;
+int LINE_COLOR = 8;
+
+int SHRUGGIE = 1;
 
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
@@ -42,6 +44,7 @@ void PrintHelp(char *strIN){
     printf("  -helpline=n     n [%d]  = 1=true or 0=false, if help-line is printed\n", HELP_LINE);
     printf("  -helpsign=n     n [%d]  = 1=true or 0=false, if help-signs are printed\n", HELP_SIGN);
     printf("  -linecolor=n    n [%d]  = 0=default 1-8 = black/red/green/yellow/blue/magenta/cyan/white\n",LINE_COLOR);
+    printf("  -shruggie=n     n [%d]  = 1=print ¯\\_(ツ)_/¯ on empty convline positions\n",SHRUGGIE);
     printf("  -help           print this screen\n\n");
 }
 
@@ -367,6 +370,17 @@ void FillBoxLine(char symbol){
             printf("=");
             CursorMove(4 ,2);
         }
+        else if (SHRUGGIE && CONV_LINE){
+            // Print ¯\_(ツ)_/¯
+            TxtBold(0);
+            SetFg16(GetRand(31,36));
+            CursorMove(-12, -2);
+            printf("¯\\_(ツ)_/¯");
+            CursorMove(2,2);
+            ResFg();
+            TxtBold(1);
+        }
+        
         
         if (i < X_Copy-1) CursorRight(4);
     }
@@ -448,7 +462,9 @@ int main(int argc, char *argv[]){
         }
         else if (strncmp(argv[i], "-linecolor=", 11) == 0){
             LINE_COLOR = atoi(argv[i] + 11);
-            if(LINE_COLOR) LINE_COLOR += 29;
+        }
+        else if (strncmp(argv[i], "-shruggie=", 10) == 0){
+            SHRUGGIE = atoi(argv[i] + 10);
         }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");
@@ -463,6 +479,7 @@ int main(int argc, char *argv[]){
         }
     }
     
+    if(LINE_COLOR) LINE_COLOR += 29;
 
     CLS();
     CursorDown(1); CursorRight(2);

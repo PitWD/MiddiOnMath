@@ -25,6 +25,8 @@ int CONV_SIGN = 1;          // IF sign of converting line is printed
 int HELP_LINE = 1;          // If regular help-line is printed
 int HELP_SIGN = 1;          // If sign of help-line is printed
 
+int LINE_COLOR = 0;
+
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
 void PrintHelp(char *strIN){
@@ -39,6 +41,7 @@ void PrintHelp(char *strIN){
     printf("  -convsign=n     n [%d]  = 1=true or 0=false, if converter-sign is printed\n", CONV_SIGN);
     printf("  -helpline=n     n [%d]  = 1=true or 0=false, if help-line is printed\n", HELP_LINE);
     printf("  -helpsign=n     n [%d]  = 1=true or 0=false, if help-signs are printed\n", HELP_SIGN);
+    printf("  -linecolor=n    n [%d]  = 0=default 1-8 = black/red/green/yellow/blue/magenta/cyan/white\n",LINE_COLOR);
     printf("  -help           print this screen\n\n");
 }
 
@@ -106,6 +109,40 @@ void TxtBold(int set) {
 		printf("\x1B[22m");
 	}
 }
+// Reset To Default Colors
+void ResFg(void) {
+	printf("\x1B[39m");
+}
+void ResBg(void) {
+	printf("\x1B[49m");
+}
+void ResFB(void) {
+	ResFg();
+	ResBg();
+}
+//Set 16 Colors
+void SetFg16(int c){
+	// ForeGround	
+	if (!((c > 29 && c < 38) || (c > 89 && c < 98))){
+		ResFg();
+	}
+	else{
+		printf("\x1B[%dm", c);
+	}	
+}
+void SetBg16(int c) {	
+	// BackGround
+	if (!((c > 39 && c < 48) || (c > 99 && c < 108))){
+		ResBg();
+	}
+	else{
+		printf("\x1B[%dm", c);
+	}
+}
+void SetFB16(int fg, int bg) {
+	SetFg16(fg);
+	SetBg16(bg);
+}
 
 /*
 a b c d e f g h i j k l m n o p q r s t u v w x y z
@@ -161,11 +198,13 @@ int GetPosPair(int *num1st, int *num2nd){
 
 void PrintMidLine(char symbol, int printSymbol){
     for (size_t i = 0; i < X_Copy; i++){
+        if(LINE_COLOR) SetFg16(LINE_COLOR);
         printf("│ │ │");
         TxtBold(1);
 
         if(misChar[i]) symbol = misChar[i];
-        
+
+        if(LINE_COLOR) ResFg();
         if (printSymbol){
             printf("%c", symbol);
         }
@@ -174,18 +213,23 @@ void PrintMidLine(char symbol, int printSymbol){
         }
 
         TxtBold(0);
+        if(LINE_COLOR) SetFg16(LINE_COLOR);
         printf("│ │ │");
         TxtBold(1);
+        if(LINE_COLOR) ResFg();
         printf("=");
         TxtBold(0);
+        if(LINE_COLOR) SetFg16(LINE_COLOR);
         printf("│ │ │");
         if(i < X_Copy-1) printf("  ");
+        if(LINE_COLOR) ResFg();
     }    
     CursorRestore();
 }
 
 void PrintTriple(char *strIN, int cnt){
     if(!cnt) cnt = X_Copy;
+    if(LINE_COLOR) SetFg16(LINE_COLOR);
     for (size_t i = 0; i < cnt; i++){
         for (size_t j = 0; j < 3; j++){
             printf("%s",strIN);
@@ -193,6 +237,7 @@ void PrintTriple(char *strIN, int cnt){
         }
         if(i < X_Copy-1) printf(" ");
     }    
+    if(LINE_COLOR) ResFg();
 }
 
 void PrintBotLine(){
@@ -400,6 +445,10 @@ int main(int argc, char *argv[]){
         }
         else if (strncmp(argv[i], "-helpsign=", 10) == 0){
             HELP_SIGN = atoi(argv[i] + 10);
+        }
+        else if (strncmp(argv[i], "-linecolor=", 11) == 0){
+            LINE_COLOR = atoi(argv[i] + 11);
+            if(LINE_COLOR) LINE_COLOR += 29;
         }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");

@@ -198,10 +198,7 @@ void GetRandPairMulDiv(int *num1st, int *num2nd){
         cnt++;
         *num1st = cnt;
         *num2nd = ONE_ONE;
-        if (*num1st * *num2nd > 100){
-            *num1st = 1;
-            *num2nd = 1;
-        }
+        if (*num1st * *num2nd > 100) *num1st = cnt = 1;
     }
     else{
         *num1st = GetRand(2, 9);

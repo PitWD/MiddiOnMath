@@ -10,9 +10,11 @@ int X_Copy = 4;             // Count Horizontal Calculations
 
 int Y_Copy = 2;             // Count Vertical Calculations
 
-int CALC_MODE = 2;          // 0 = Multiplications
-                            // 1 = Subtractions
-                            // 2 = Mul. & Sub. mixed
+int CALC_MODE = 3;          // 1 = Additions
+                            // 2 = Subtractions
+                            // 4 = Multiplications
+                            // 8 = Divisions
+
 char *strCalcMode[] = {"+", "-", "+-"};
 
 int MISSING = 2;            // 0 = Show All
@@ -29,15 +31,17 @@ int LINE_COLOR = 8;
 
 int SHRUGGIE = 1;
 
+int TWO_DIGIT = 1;
+
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
 void PrintHelp(char *strIN){
     printf("How to call:\n");
-    printf("  %s <option-1> <option-2> <option-n>\n", strIN);
+    printf("  %s <option> <option> <option>\n", strIN);
     printf("Known options (defaults in []):\n");
     printf("  -x=n            n [%d]  = 1-%d columns\n", X_Copy, MAX_X_COPY);
     printf("  -y=n            n [%d]  = 1-%d rows\n",Y_Copy, MAX_Y_COPY);
-    printf("  -calc='n'       n [%s] = +- or + or - calculation(s)\n", strCalcMode[CALC_MODE]);
+    printf("  -calc='n'       n [%s]  = 1=+ 2=- 4=* 8=/ calculation(s)\n", strCalcMode[CALC_MODE]);
     printf("  -remove=n       n [%d]  = 0=none or 1=result or 2=random\n", MISSING);
     printf("  -convline=n     n [%d]  = 1=true or 0=false, if converter-line is printed\n", CONV_LINE);
     printf("  -convsign=n     n [%d]  = 1=true or 0=false, if converter-sign is printed\n", CONV_SIGN);
@@ -45,6 +49,7 @@ void PrintHelp(char *strIN){
     printf("  -helpsign=n     n [%d]  = 1=true or 0=false, if help-signs are printed\n", HELP_SIGN);
     printf("  -linecolor=n    n [%d]  = 0=default 1-8 = black/red/green/yellow/blue/magenta/cyan/white\n",LINE_COLOR);
     printf("  -shruggie=n     n [%d]  = 1=print ¯\\_(ツ)_/¯ on empty convline positions\n",SHRUGGIE);
+    printf("  -twodigit=n     n [%d]  = 0= calcs with one digit or 1= calcs with two digits\n",TWO_DIGIT);
     printf("  -help           print this screen\n\n");
 }
 
@@ -171,14 +176,23 @@ int GetRand(int start, int stop){
         return start + rand() % (stop + 1 - start);
     #endif
 }
-void GetRandPair(int *num1st, int *num2nd){
+void GetRandPairPlusMinus(int *num1st, int *num2nd){
     *num1st = GetRand(11, 99);
     *num2nd = GetRand(11, 99);
+}
+void GetRandPairMulDiv(int *num1st, int *num2nd){
+    *num1st = GetRand(2, 9);
+    if (TWO_DIGIT){
+        *num2nd = GetRand(11, 54);
+    }
+    else{
+        *num2nd = GetRand(2, 9);
+    }    
 }
 int GetNegPair(int *num1st, int *num2nd){
     int r = 0;
     while (!r){
-        GetRandPair(num1st, num2nd);
+        GetRandPairPlusMinus(num1st, num2nd);
         r = *num1st - *num2nd;
         if(r < 0){
             r = *num1st;
@@ -192,13 +206,33 @@ int GetNegPair(int *num1st, int *num2nd){
 int GetPosPair(int *num1st, int *num2nd){
     int r = 0;
     while (!r){
-        GetRandPair(num1st, num2nd);
+        GetRandPairPlusMinus(num1st, num2nd);
         r = *num1st + *num2nd;
         if(r > 99) r = 0;
     }
     return r;
 }
-
+int GetMulPair(int *num1st, int *num2nd){
+    int r = 0;
+    while (!r){
+        GetRandPairMulDiv(num1st, num2nd);
+        r = *num1st * *num2nd;
+        if(r > 99) r = 0;
+    }
+    if(GetRand(0,1)){
+        // Shake 1st & 2nd
+        r = *num1st;
+        *num1st = *num2nd;
+        *num2nd = r;
+        r = *num1st * *num2nd;
+    } 
+    return r;
+}
+int GetDivPair(int *num1st, int *num2nd){
+    int r = 0;
+    *num1st = GetMulPair(&r, num2nd);
+    return r;
+}
 void PrintMidLine(char symbol, int printSymbol){
     for (size_t i = 0; i < X_Copy; i++){
         if(LINE_COLOR) SetFg16(LINE_COLOR);
@@ -256,6 +290,20 @@ void PrintTopBlock(char symbol, int printSymbol){
     CursorDown(2);
 }
 
+void PrintVal(int val){
+    char strVal[] = "  ";
+    sprintf(strVal, "%d", val);
+    if (val > 9){
+        printf("%c", strVal[0]);
+        CursorRight(1);
+        printf("%c", strVal[1]);
+    }
+    else{
+        CursorRight(2);
+        printf("%c", strVal[0]);
+    }
+}
+
 void FillBoxLine(char symbol){
     
     CursorSave();
@@ -269,9 +317,6 @@ void FillBoxLine(char symbol){
         int num1st = 0;
         int num2nd = 0;
         int r = 0;
-        char char1st[3] = "  ";
-        char char2nd[3] = "  ";
-        char char3rd[3] = "  ";
 
         int dontShow = GetRand(1, 3);       // Which value to remove, if randomized
         if(!MISSING) dontShow = 0;          // Show all
@@ -281,20 +326,19 @@ void FillBoxLine(char symbol){
         if (symbol == '+'){
             r = GetPosPair(&num1st, &num2nd);
         }
-        else{
+        else if (symbol == '-'){
             r = GetNegPair(&num1st, &num2nd);
         }
-
-        // Convert calculation values to strings
-        sprintf(char1st,"%d", num1st);
-        sprintf(char2nd,"%d", num2nd);
-        sprintf(char3rd,"%d", r);
-        
+        else if (symbol == '*'){
+            r = GetMulPair(&num1st, &num2nd);
+        }
+        else {
+            r = GetDivPair(&num1st, &num2nd);
+        }
+                
         if (dontShow != 1){
             // Print 1st value
-            printf("%c", char1st[0]);
-            CursorRight(1);
-            printf("%c", char1st[1]);
+            PrintVal(num1st);
         }
         else{
             CursorRight(3);
@@ -304,9 +348,7 @@ void FillBoxLine(char symbol){
 
         if (dontShow != 2){
             // Print 2nd Value        
-            printf("%c", char2nd[0]);
-            CursorRight(1);
-            printf("%c", char2nd[1]);
+            PrintVal(num2nd);
         }
         else{
             CursorRight(3);
@@ -315,16 +357,8 @@ void FillBoxLine(char symbol){
         CursorRight(3);
     
         if (dontShow != 3){
-            // Print result (may have just 1 digit...)
-            if (r > 9){
-                printf("%c", char3rd[0]);
-                CursorRight(1);
-                printf("%c", char3rd[1]);
-            }
-            else{
-                CursorRight(2);
-                printf("%c", char3rd[0]);
-            }
+            // Print result
+            PrintVal(r);
         }
         else{
             CursorRight(3);
@@ -338,7 +372,7 @@ void FillBoxLine(char symbol){
                 convSign = '-';
             }
         }
-        else{
+        else if (symbol == '-'){
             if (dontShow == 1){
                 // "converter" line with "plus" needed
                 convSign = '+';
@@ -348,6 +382,23 @@ void FillBoxLine(char symbol){
                 convSign = '-';
             }            
         }
+        else if (symbol == '*'){
+            if (dontShow && dontShow < 3){
+                // "converter" line with "div" needed
+                convSign = '/';
+            }
+        }
+        else{
+            if (dontShow == 1){
+                // "converter" line with "mul" needed
+                convSign = '*';
+            }
+            else if (dontShow == 2){
+                // "converter" line with "mul" needed
+                convSign = '/';
+            }
+        }
+        
         misChar[i] = convSign;
         if(!convSign) misChar[i] = symbol;
         if (convSign && CONV_LINE){
@@ -434,14 +485,8 @@ int main(int argc, char *argv[]){
             if(Y_Copy > MAX_Y_COPY) Y_Copy = MAX_Y_COPY;
             if(Y_Copy < 1) Y_Copy = 1;
         }
-        else if (strncmp(argv[i], "-calc=+-", 8) == 0){
-            CALC_MODE = 2;
-        }
-        else if (strncmp(argv[i], "-calc=+", 7) == 0){
-            CALC_MODE = 0;
-        }
-        else if (strncmp(argv[i], "-calc=-", 7) == 0){
-            CALC_MODE = 1;
+        else if (strncmp(argv[i], "-calc=", 6) == 0){
+            CALC_MODE = atoi(argv[i] + 6);
         }
         else if (strncmp(argv[i], "-remove=", 8) == 0){
             MISSING = atoi(argv[i] + 8);
@@ -466,6 +511,9 @@ int main(int argc, char *argv[]){
         else if (strncmp(argv[i], "-shruggie=", 10) == 0){
             SHRUGGIE = atoi(argv[i] + 10);
         }
+        else if (strncmp(argv[i], "-twodigit=", 10) == 0){
+            TWO_DIGIT = atoi(argv[i] + 10);
+        }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");
             PrintHelp(argv[0]);
@@ -487,12 +535,20 @@ int main(int argc, char *argv[]){
     srand(clock());    
 
     while (Y_Copy){
-        if (!CALC_MODE || CALC_MODE == 2){
+        if ((CALC_MODE & 1) == 1){
             PrintCalcLine('+');
             Y_Copy--;
         }
-        if ((CALC_MODE == 1 || CALC_MODE == 2 && Y_Copy)){
+        if ((CALC_MODE & 2) == 2){
             PrintCalcLine('-');
+            Y_Copy--;
+        }
+        if ((CALC_MODE & 4) == 4){
+            PrintCalcLine('*');
+            Y_Copy--;
+        }
+        if ((CALC_MODE & 8) == 8){
+            PrintCalcLine('/');
             Y_Copy--;
         }
     }

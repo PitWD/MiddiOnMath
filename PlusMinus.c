@@ -35,6 +35,8 @@ int TWO_DIGIT = 1;
 
 int SQUARED = 0;
 
+int ONE_ONE = 0;
+
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
 void PrintHelp(char *strIN){
@@ -43,7 +45,8 @@ void PrintHelp(char *strIN){
     printf("Known options (defaults in []):\n");
     printf("  -x=n            n [%d]  = 1-%d columns\n", X_Copy, MAX_X_COPY);
     printf("  -y=n            n [%d]  = 1-%d rows\n",Y_Copy, MAX_Y_COPY);
-    printf("  -calc='n'       n [%s]  = 1=+ 2=- 4=* 8=/ calculation(s)\n", strCalcMode[CALC_MODE]);
+    printf("  -calc=n         n [%s]  = 1=+ 2=- 4=* 8=/ calculation(s)\n", strCalcMode[CALC_MODE]);
+    printf("  -oneone=n       n [%d]  = 1-10 Do 1x1 with value n\n",ONE_ONE);
     printf("  -remove=n       n [%d]  = 0=none or 1=result or 2=random\n", MISSING);
     printf("  -convline=n     n [%d]  = 1=true or 0=false, if converter-line is printed\n", CONV_LINE);
     printf("  -convsign=n     n [%d]  = 1=true or 0=false, if converter-sign is printed\n", CONV_SIGN);
@@ -190,17 +193,29 @@ void GetRandPairPlusMinus(int *num1st, int *num2nd){
     }
 }
 void GetRandPairMulDiv(int *num1st, int *num2nd){
-    *num1st = GetRand(2, 9);
-    if (TWO_DIGIT && !SQUARED){
-        *num2nd = GetRand(11, 54);
+    static int cnt = 0;
+    if (ONE_ONE){
+        cnt++;
+        *num1st = cnt;
+        *num2nd = ONE_ONE;
+        if (*num1st * *num2nd > 100){
+            *num1st = 1;
+            *num2nd = 1;
+        }
     }
     else{
-        if (SQUARED){
-            *num2nd = *num1st;
+        *num1st = GetRand(2, 9);
+        if (TWO_DIGIT && !SQUARED){
+            *num2nd = GetRand(11, 54);
         }
         else{
-            *num2nd = GetRand(2, 9);
-        }        
+            if (SQUARED){
+                *num2nd = *num1st;
+            }
+            else{
+                *num2nd = GetRand(2, 9);
+            }        
+        }    
     }    
 }
 int GetPosPair(int *num1st, int *num2nd){
@@ -224,7 +239,7 @@ int GetMulPair(int *num1st, int *num2nd){
         r = *num1st * *num2nd;
         if(r > 99) r = 0;
     }
-    if(GetRand(0,1)){
+    if(GetRand(0,1) && !ONE_ONE){
         // Shake 1st & 2nd
         r = *num1st;
         *num1st = *num2nd;
@@ -480,23 +495,22 @@ void PrintCalcLine(char symbol){
 int main(int argc, char *argv[]){
 
     for (int i = 1; i < argc; i++){
+        int r = 0;
         if (strncmp(argv[i], "-x=", 3) == 0){
             X_Copy = atoi(argv[i] + 3);
-            if(X_Copy > MAX_X_COPY) X_Copy = MAX_X_COPY;
-            if(X_Copy < 1) X_Copy = 1;
+            if(X_Copy > MAX_X_COPY || X_Copy < 1) r = 1;
         }
         else if (strncmp(argv[i], "-y=", 3) == 0){
             Y_Copy = atoi(argv[i] + 3);
-            if(Y_Copy > MAX_Y_COPY) Y_Copy = MAX_Y_COPY;
-            if(Y_Copy < 1) Y_Copy = 1;
+            if(Y_Copy > MAX_Y_COPY || Y_Copy < 1) r = 1;
         }
         else if (strncmp(argv[i], "-calc=", 6) == 0){
             CALC_MODE = atoi(argv[i] + 6);
+            if(CALC_MODE < 1 || CALC_MODE > 15) r = 1;
         }
         else if (strncmp(argv[i], "-remove=", 8) == 0){
             MISSING = atoi(argv[i] + 8);
-            if(MISSING > 2) MISSING = 2;
-            if(MISSING < 0) MISSING = 0;
+            if(MISSING > 2 || MISSING < 0) r = 1;
         }
         else if (strncmp(argv[i], "-convline=", 10) == 0){
             CONV_LINE = atoi(argv[i] + 10);
@@ -512,6 +526,7 @@ int main(int argc, char *argv[]){
         }
         else if (strncmp(argv[i], "-linecolor=", 11) == 0){
             LINE_COLOR = atoi(argv[i] + 11);
+            if(LINE_COLOR < 0 || LINE_COLOR > 8) r = 1;
         }
         else if (strncmp(argv[i], "-shruggie=", 10) == 0){
             SHRUGGIE = atoi(argv[i] + 10);
@@ -522,17 +537,30 @@ int main(int argc, char *argv[]){
         else if (strncmp(argv[i], "-squared=", 9) == 0){
             SQUARED = atoi(argv[i] + 9);
         }
+        else if (strncmp(argv[i], "-oneone=", 8) == 0){
+            ONE_ONE = atoi(argv[i] + 8);
+            if (ONE_ONE > 10 || ONE_ONE < 0) r = 1;
+        }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");
             PrintHelp(argv[0]);
             return 0;
         }
         else{
-            printf("\n\nIllegal option:\n");
+            r = 2;
+        }
+        if (r){
+            // Error
+            if (r == 2){
+                printf("\n\nUnknown option:\n");
+            }
+            else{
+                printf("\n\nIllegal option value:\n");
+            }
             printf("  %s\n",argv[i]);
             PrintHelp(argv[0]);
             return -1;
-        }
+        } 
     }
     
     if(LINE_COLOR) LINE_COLOR += 29;
@@ -541,6 +569,8 @@ int main(int argc, char *argv[]){
     CursorDown(1); CursorRight(2);
 
     srand(clock());    
+
+    if(ONE_ONE) CALC_MODE = 4;
 
     while (Y_Copy){
         if ((CALC_MODE & 1) == 1){

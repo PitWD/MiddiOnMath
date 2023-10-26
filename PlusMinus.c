@@ -33,6 +33,8 @@ int SHRUGGIE = 1;
 
 int TWO_DIGIT = 1;
 
+int SQUARED = 0;
+
 char misChar[MAX_X_COPY];    // Save while FillBoxLine() the needed +/-
 
 void PrintHelp(char *strIN){
@@ -50,6 +52,7 @@ void PrintHelp(char *strIN){
     printf("  -linecolor=n    n [%d]  = 0=default 1-8 = black/red/green/yellow/blue/magenta/cyan/white\n",LINE_COLOR);
     printf("  -shruggie=n     n [%d]  = 1=print ¯\\_(ツ)_/¯ on empty convline positions\n",SHRUGGIE);
     printf("  -twodigit=n     n [%d]  = 0= calcs with one digit or 1= calcs with two digits\n",TWO_DIGIT);
+    printf("  -squared=n      n [%d]  = * & / with one digit and equal values\n",SQUARED);
     printf("  -help           print this screen\n\n");
 }
 
@@ -188,11 +191,16 @@ void GetRandPairPlusMinus(int *num1st, int *num2nd){
 }
 void GetRandPairMulDiv(int *num1st, int *num2nd){
     *num1st = GetRand(2, 9);
-    if (TWO_DIGIT){
+    if (TWO_DIGIT && !SQUARED){
         *num2nd = GetRand(11, 54);
     }
     else{
-        *num2nd = GetRand(2, 9);
+        if (SQUARED){
+            *num2nd = *num1st;
+        }
+        else{
+            *num2nd = GetRand(2, 9);
+        }        
     }    
 }
 int GetPosPair(int *num1st, int *num2nd){
@@ -510,6 +518,9 @@ int main(int argc, char *argv[]){
         }
         else if (strncmp(argv[i], "-twodigit=", 10) == 0){
             TWO_DIGIT = atoi(argv[i] + 10);
+        }
+        else if (strncmp(argv[i], "-squared=", 9) == 0){
+            SQUARED = atoi(argv[i] + 9);
         }
         else if (strncmp(argv[i], "-help", 5) == 0){
             printf("\n\n");

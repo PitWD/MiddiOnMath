@@ -177,8 +177,14 @@ int GetRand(int start, int stop){
     #endif
 }
 void GetRandPairPlusMinus(int *num1st, int *num2nd){
-    *num1st = GetRand(11, 99);
-    *num2nd = GetRand(11, 99);
+    if (TWO_DIGIT){
+        *num1st = GetRand(11, 99);
+        *num2nd = GetRand(11, 99);
+    }
+    else{
+        *num1st = GetRand(2, 9);
+        *num2nd = GetRand(2, 9);
+    }
 }
 void GetRandPairMulDiv(int *num1st, int *num2nd){
     *num1st = GetRand(2, 9);
@@ -189,20 +195,6 @@ void GetRandPairMulDiv(int *num1st, int *num2nd){
         *num2nd = GetRand(2, 9);
     }    
 }
-int GetNegPair(int *num1st, int *num2nd){
-    int r = 0;
-    while (!r){
-        GetRandPairPlusMinus(num1st, num2nd);
-        r = *num1st - *num2nd;
-        if(r < 0){
-            r = *num1st;
-            *num1st = *num2nd;
-            *num2nd = r;
-            r = *num1st - *num2nd;
-        }
-    }
-    return r;
-}
 int GetPosPair(int *num1st, int *num2nd){
     int r = 0;
     while (!r){
@@ -210,6 +202,11 @@ int GetPosPair(int *num1st, int *num2nd){
         r = *num1st + *num2nd;
         if(r > 99) r = 0;
     }
+    return r;
+}
+int GetNegPair(int *num1st, int *num2nd){
+    int r = 0;
+    *num1st = GetPosPair(&r, num2nd);
     return r;
 }
 int GetMulPair(int *num1st, int *num2nd){

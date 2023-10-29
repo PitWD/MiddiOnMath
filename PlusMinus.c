@@ -15,8 +15,6 @@ int CALC_MODE = 3;          // 1 = Additions
                             // 4 = Multiplications
                             // 8 = Divisions
 
-char *strCalcMode[] = {"+", "-", "+-"};
-
 int MISSING = 2;            // 0 = Show All
                             // 1 = remove result
                             // 2 = remove random value
@@ -45,7 +43,7 @@ void PrintHelp(char *strIN){
     printf("Known options (defaults in []):\n");
     printf("  -x=n            n [%d]  = 1-%d columns\n", X_Copy, MAX_X_COPY);
     printf("  -y=n            n [%d]  = 1-%d rows\n",Y_Copy, MAX_Y_COPY);
-    printf("  -calc=n         n [%s]  = 1=+ 2=- 4=* 8=/ calculation(s)\n", strCalcMode[CALC_MODE]);
+    printf("  -calc=n         n [%d]  = 1=+ 2=- 4=* 8=/ calculation(s)\n", CALC_MODE);
     printf("  -oneone=n       n [%d]  = 1-10 Do 1x1 with value n\n",ONE_ONE);
     printf("  -remove=n       n [%d]  = 0=none or 1=result or 2=random\n", MISSING);
     printf("  -convline=n     n [%d]  = 1=true or 0=false, if converter-line is printed\n", CONV_LINE);

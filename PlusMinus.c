@@ -81,6 +81,7 @@ void CursorLeft(int x) {
 }
 void CursorUp(int y) {
 	printf("\x1B[%dA", y);
+    fflush(stdout);
 }
 void CursorMoveX(int x){
 	if (x < 0){
